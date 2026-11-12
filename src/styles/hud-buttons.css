@@ -1,0 +1,437 @@
+/* ==========================================================================
+   Minimalist Top Navigation, Zero-Clutter Piece Action Bar, Buttons & Odometer
+   ========================================================================== */
+
+.gs-hud {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-hud);
+  pointer-events: none;
+  padding: var(--hud-pad-y) var(--hud-pad-x);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+  color: var(--fg-primary);
+}
+
+.gs-hud__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 36px;
+}
+
+/* Subtle Top-of-Viewport Collection Scroll Progress Indicator */
+.gs-hud__progress-rail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  pointer-events: none;
+  z-index: calc(var(--z-hud) + 2);
+  opacity: 0.45;
+  transition: opacity 220ms var(--ease-out), background-color 180ms var(--ease-out);
+}
+
+.gs-hud__progress-rail.is-active,
+.gs-hud.is-past-hero .gs-hud__progress-rail {
+  opacity: 1;
+}
+
+.gs-hud__progress-fill {
+  width: 100%;
+  height: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
+  background: linear-gradient(90deg, var(--gemini-core-blue) 0%, var(--gemini-light-blue) 65%, var(--gemini-cyan-ice) 100%);
+  will-change: transform;
+}
+
+body.is-cobalt-polarity .gs-hud__progress-rail {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+body.is-cobalt-polarity .gs-hud__progress-fill {
+  background: var(--fg-primary);
+}
+
+.gs-hud__progress-readout {
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-4px);
+  margin-left: auto;
+  margin-right: 14px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+  color: var(--fg-muted);
+  transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out), color 180ms var(--ease-out);
+}
+
+.gs-hud.is-past-hero .gs-hud__progress-readout {
+  opacity: 0.82;
+  transform: translateY(0);
+}
+
+body.is-cobalt-polarity .gs-hud__progress-readout {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Bare borderless procedural Spark anchor: invisible on Home, appears once scrolled */
+.gs-hud__spark-anchor {
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.84);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-left: -8px;
+  background: transparent;
+  border: none;
+  color: var(--fg-primary);
+  transition:
+    opacity 220ms var(--ease-out),
+    transform 220ms var(--ease-out),
+    color 180ms var(--ease-out);
+}
+
+.gs-hud.is-past-hero .gs-hud__spark-anchor {
+  pointer-events: auto;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.gs-hud__spark-anchor:active {
+  transform: scale(0.92);
+}
+
+.gs-hud__spark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  color: var(--gemini-cyan-ice);
+  transition: transform 320ms var(--ease-expo-out), color 180ms var(--ease-out);
+}
+
+body.is-cobalt-polarity .gs-hud__spark {
+  color: var(--fg-primary);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .gs-hud__spark-anchor:hover .gs-hud__spark {
+    transform: rotate(90deg) scale(1.08);
+    color: var(--fg-primary);
+  }
+}
+
+.gs-hud__bag {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 34px;
+  padding: 0 12px;
+  background: rgba(8, 8, 10, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--hairline-strong);
+  color: var(--fg-primary);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  transition:
+    transform 150ms var(--ease-out),
+    border-color 180ms var(--ease-out),
+    background-color 180ms var(--ease-out);
+}
+
+body.is-cobalt-polarity .gs-hud__bag {
+  background: rgba(31, 52, 255, 0.88);
+  border-color: rgba(255, 255, 255, 0.42);
+}
+
+.gs-hud__bag:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .gs-hud__bag:hover {
+    border-color: var(--fg-primary);
+  }
+}
+
+/* ==========================================================================
+   Reusable Zero-Clutter Product Caption & + Bag Bar (.gs-piece-bar)
+   Shows strictly: Product Title | USD $XX.00 | + Bag
+   ========================================================================== */
+
+.gs-piece-bar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0 0;
+  border-top: 1px solid var(--hairline-strong);
+}
+
+.gs-piece-bar__title-btn {
+  display: inline-flex;
+  align-items: center;
+  text-align: left;
+  min-width: 0;
+  padding: 4px 0;
+  color: var(--fg-primary);
+  transition: opacity 180ms var(--ease-out), transform 150ms var(--ease-out);
+}
+
+.gs-piece-bar__title-btn:active {
+  transform: scale(0.985);
+}
+
+.gs-piece-bar__title {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: clamp(15.5px, 1.35vw, 18.5px);
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  color: var(--fg-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .gs-piece-bar__title-btn:hover .gs-piece-bar__title {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+  }
+}
+
+.gs-piece-bar__right {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  flex: 0 0 auto;
+}
+
+.gs-piece-bar__price {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.05em;
+  font-variant-numeric: tabular-nums;
+  color: rgba(255, 255, 255, 0.84);
+  white-space: nowrap;
+}
+
+.gs-piece-bar__add {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 76px;
+  height: 34px;
+  padding: 0 14px;
+  background-color: var(--fg-primary);
+  color: var(--bg-obsidian);
+  border: 1px solid var(--fg-primary);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  user-select: none;
+  transition:
+    transform 150ms var(--ease-out),
+    background-color 180ms var(--ease-out),
+    color 180ms var(--ease-out),
+    border-color 180ms var(--ease-out);
+}
+
+.gs-piece-bar__add:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .gs-piece-bar__add:hover {
+    background-color: var(--gemini-core-blue);
+    border-color: var(--gemini-light-blue);
+    color: var(--fg-primary);
+  }
+}
+
+/* Cobalt sections invert + Bag hover so contrast stays razor-sharp */
+.piece-sweatshirt .gs-piece-bar__add,
+.piece-pin .gs-piece-bar__add {
+  background-color: var(--fg-primary);
+  color: var(--bg-cobalt);
+  border-color: var(--fg-primary);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .piece-sweatshirt .gs-piece-bar__add:hover,
+  .piece-pin .gs-piece-bar__add:hover {
+    background-color: var(--bg-obsidian);
+    border-color: var(--fg-primary);
+    color: var(--fg-primary);
+  }
+}
+
+/* Silent 6x6px 0px-radius square frame indicators */
+.piece-step-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.piece-step-dot {
+  width: 6px;
+  height: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  background-color: transparent;
+  transition:
+    background-color 180ms var(--ease-out),
+    border-color 180ms var(--ease-out),
+    transform 180ms var(--ease-out);
+}
+
+.piece-step-dot.is-active {
+  background-color: var(--fg-primary);
+  border-color: var(--fg-primary);
+  transform: scale(1.12);
+}
+
+/* ==========================================================================
+   Architectural Buttons (WCAG AAA, Single-Line, Scale 0.97 Press Feedback)
+   ========================================================================== */
+
+.gs-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 24px;
+  background-color: var(--fg-primary);
+  color: var(--bg-obsidian);
+  border: 1px solid var(--fg-primary);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  user-select: none;
+  transition:
+    transform 150ms var(--ease-out),
+    background-color 180ms var(--ease-out),
+    color 180ms var(--ease-out),
+    border-color 180ms var(--ease-out);
+}
+
+.gs-btn-primary:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .gs-btn-primary:hover {
+    background-color: var(--gemini-core-blue);
+    border-color: var(--gemini-core-blue);
+    color: var(--fg-primary);
+  }
+}
+
+.gs-btn-ghost,
+.gs-btn-outbound {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 16px;
+  background-color: rgba(8, 8, 10, 0.85);
+  color: var(--fg-primary);
+  border: 1px solid var(--hairline-strong);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  user-select: none;
+  transition:
+    transform 150ms var(--ease-out),
+    background-color 180ms var(--ease-out),
+    border-color 180ms var(--ease-out),
+    color 180ms var(--ease-out);
+}
+
+.gs-btn-ghost:active,
+.gs-btn-outbound:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .gs-btn-ghost:hover,
+  .gs-btn-outbound:hover {
+    background-color: var(--fg-primary);
+    color: var(--bg-obsidian);
+    border-color: var(--fg-primary);
+  }
+}
+
+.gs-btn-label,
+.gs-btn-content {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition:
+    filter 190ms var(--ease-out),
+    opacity 190ms var(--ease-out);
+}
+
+.gs-btn-label.is-transitioning,
+.gs-btn-content.is-transitioning {
+  filter: blur(2px);
+  opacity: 0.62;
+}
+
+/* ==========================================================================
+   Tabular Odometer Component
+   ========================================================================== */
+
+.gs-odometer {
+  display: inline-flex;
+  align-items: baseline;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  white-space: pre;
+  overflow: hidden;
+  line-height: 1.15;
+}
+
+.gs-odometer__slot {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.gs-odometer__char {
+  display: inline-block;
+  will-change: transform, opacity;
+}

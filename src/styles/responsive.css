@@ -1,0 +1,291 @@
+/* ==========================================================================
+   Explicit Tablet (< 1024px) & Mobile (< 768px / < 640px) Collapse Rules
+   ========================================================================== */
+
+@media (max-width: 1023px) {
+  .act-catalog__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .act-spread__inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .act-spread__manifest {
+    position: static;
+    max-width: 560px;
+  }
+
+  /* Tote hides side street flanks below 1024px so the 3D dual-sided flip owns the viewport */
+  .piece-tote__composition {
+    grid-template-columns: 1fr;
+    max-width: 640px;
+  }
+
+  .piece-tote__flank {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --hud-pad-x: 16px;
+    --hud-pad-y: 12px;
+  }
+
+  .gs-hud {
+    font-size: 10.5px;
+  }
+
+  .gs-hud__bag {
+    height: 32px;
+    padding: 0 10px;
+    font-size: 10.5px;
+  }
+
+  .gs-piece-bar {
+    gap: 10px;
+    padding-top: 10px;
+  }
+
+  .gs-piece-bar__title {
+    font-size: 14.5px;
+  }
+
+  .gs-piece-bar__right {
+    gap: 9px;
+  }
+
+  .gs-piece-bar__price {
+    font-size: 11px;
+  }
+
+  .gs-piece-bar__add {
+    min-width: 66px;
+    height: 32px;
+    padding: 0 10px;
+    font-size: 10.5px;
+  }
+
+  /* Hero Mobile */
+  .act-hero__title {
+    padding: calc(var(--hud-pad-y) + 76px) 18px calc(var(--hud-pad-y) + 108px);
+  }
+
+  .act-hero__word {
+    font-size: clamp(3.5rem, 17.5vw, 5.1rem);
+  }
+
+  .act-hero__bar {
+    padding: 10px 12px;
+  }
+
+  /* Chapter Gates Mobile */
+  .chapter-gate {
+    height: 34dvh;
+    min-height: 220px;
+  }
+
+  /* Sweatshirt Mobile: Stack 62/38 split cleanly into upper/lower panes */
+  .piece-sweatshirt__pin {
+    padding: calc(var(--hud-pad-y) + 42px) var(--hud-pad-x) var(--hud-pad-y);
+  }
+
+  .piece-sweatshirt__grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(0, 44fr) minmax(0, 56fr);
+    gap: 12px;
+  }
+
+  /* Black Tee, Tote, Bottle, Pin Mobile */
+  .piece-black-tee__pin,
+  .piece-tote__pin,
+  .piece-bottle__pin,
+  .piece-pin__pin {
+    padding: calc(var(--hud-pad-y) + 42px) var(--hud-pad-x) var(--hud-pad-y);
+  }
+
+  .piece-black-tee__accordion {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .black-tee-blade {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+  }
+
+  /* Socks Mobile: Single-column stack */
+  .piece-socks {
+    padding: 52px var(--hud-pad-x);
+  }
+
+  .piece-socks__triptych {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .socks-card--0,
+  .socks-card--1,
+  .socks-card--2 {
+    grid-column: 1 / -1;
+    margin-top: 0;
+  }
+
+  /* Stickers Mobile: Unpinned horizontal touch snap deck */
+  .piece-stickers__pin {
+    height: auto;
+    min-height: 0;
+    padding: 48px 0;
+  }
+
+  .piece-stickers__rail-mask {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 8px;
+  }
+
+  .piece-stickers__track {
+    height: auto;
+    max-height: none;
+  }
+
+  .sticker-surface-card {
+    width: 78vw;
+    max-width: 340px;
+    height: auto;
+    scroll-snap-align: start;
+  }
+
+  /* Complete Set Mobile */
+  .act-spread {
+    padding: 56px var(--hud-pad-x);
+  }
+
+  .act-spread__gallery {
+    grid-template-columns: 1fr;
+    row-gap: 36px;
+  }
+
+  .spread-frame-a,
+  .spread-frame-b,
+  .spread-frame-c,
+  .spread-frame-d {
+    grid-column: 1 / -1;
+    margin-top: 0;
+  }
+
+  /* Product Stage Mobile: Stack into vertical split with pinned ADD TO BAG bar */
+  .gs-stage__panel {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(200px, 42dvh) minmax(0, 58dvh);
+  }
+
+  .gs-stage__media {
+    border-right: none;
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .gs-stage__angles {
+    flex: 0 0 50px;
+    height: 50px;
+  }
+
+  .gs-stage__angle-meta {
+    display: none;
+  }
+
+  .gs-stage__angle-btn {
+    justify-content: center;
+    padding: 5px;
+  }
+
+  .gs-stage__angle-thumb {
+    width: 32px;
+    height: 40px;
+  }
+
+  .gs-stage__topbar {
+    padding: 10px 16px;
+  }
+
+  .gs-stage__body {
+    padding: 14px 16px;
+    gap: 14px;
+  }
+
+  .gs-stage__heading-group {
+    order: 1;
+    gap: 4px;
+  }
+
+  .gs-stage__title {
+    font-size: 1.4rem;
+  }
+
+  .gs-stage__price {
+    font-size: 14px;
+  }
+
+  .gs-stage__sizes {
+    order: 2;
+    gap: 6px;
+  }
+
+  .gs-size-btn {
+    height: 34px;
+    min-width: 44px;
+    padding: 0 11px;
+    font-size: 11px;
+  }
+
+  .gs-stage__spec {
+    order: 3;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+
+  .gs-stage__spec-grid {
+    order: 4;
+  }
+
+  .gs-stage__spec-cell {
+    padding: 9px 11px;
+  }
+
+  .gs-stage__actions {
+    padding: 10px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+    gap: 8px;
+  }
+
+  .gs-stage__actions .gs-btn-primary {
+    min-height: 42px;
+    height: 42px;
+  }
+
+  .gs-stage__actions .gs-btn-outbound {
+    min-height: 34px;
+    height: 34px;
+    font-size: 10.5px;
+  }
+
+  /* Footer Mobile */
+  .gs-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-bottom: 32px;
+  }
+
+  .gs-footer__right {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 639px) {
+  .act-catalog__grid {
+    grid-template-columns: 1fr;
+  }
+}

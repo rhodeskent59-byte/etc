@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Remix Gemini Supply</title>
+    <meta name="description" content="HOUSE-OBD Building On-Board Diagnostics & Autonomous Facility Engine with SQLite WAL telemetry, multi-agent Gemini diagnostic council, and carbon-fiber tactical HUD." />
+    <meta property="og:title" content="Remix Gemini Supply" />
+    <meta property="og:description" content="HOUSE-OBD Building On-Board Diagnostics & Autonomous Facility Engine with SQLite WAL telemetry, multi-agent Gemini diagnostic council, and carbon-fiber tactical HUD." />
+    <meta name="theme-color" content="#08080A" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2308080A'/%3E%3Cpath d='M16 3C16.8 10.6 21.4 15.2 29 16C21.4 16.8 16.8 21.4 16 29C15.2 21.4 10.6 16.8 3 16C10.6 15.2 15.2 10.6 16 3Z' fill='%234FA0FF'/%3E%3C/svg%3E"
+    />
+    <link
+      rel="preload"
+      href="./assets/fonts/GoogleSans-Regular.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="./assets/fonts/GoogleSans-Medium.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="./assets/fonts/GoogleSans-Bold.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="./assets/fonts/GoogleSansMono.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link rel="preload" href="./assets/photos/web/02_a_banana_tee_candid.webp" as="image" />
+  </head>
+  <body>
+    <!-- Minimalist Top Navigation: Zero chips on Home, bare Spark return-to-top once scrolled + Bag [ 00 ] -->
+    <header class="gs-hud" id="gs-hud" aria-label="Shopping bag and navigation">
+      <div class="gs-hud__top">
+        <button
+          type="button"
+          class="gs-hud__spark-anchor"
+          id="hud-brand-btn"
+          aria-label="Return to top"
+        >
+          <span class="gs-hud__spark" id="hud-spark-slot" aria-hidden="true"></span>
+        </button>
+
+        <button
+          type="button"
+          class="gs-hud__bag"
+          id="hud-bag-btn"
+          aria-label="Open shopping bag"
+          aria-haspopup="dialog"
+        >
+          <span class="gs-hud__bag-prefix">Bag [</span>
+          <span class="gs-hud__bag-count" id="hud-bag-count">00</span>
+          <span class="gs-hud__bag-suffix">]</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="gs-main" class="gs-main">
+      <!-- 1. HERO (#08080A Obsidian): 3D Procedural Gemini Spark -> 02 Nano Banana T-Shirt -->
+      <section class="act-hero" id="act-1" aria-label="Gemini Supply: Nano Banana T-Shirt">
+        <div class="act-hero__pin" id="act-1-pin">
+          <canvas class="act-hero__canvas" id="hero-spark-canvas" aria-hidden="true"></canvas>
+
+          <h1 class="act-hero__title" id="hero-title">
+            <span class="act-hero__word act-hero__word--left z-word" id="hero-word-gemini">Gemini</span>
+            <span class="act-hero__word act-hero__word--right z-word" id="hero-word-supply">Supply</span>
+          </h1>
+
+          <!-- Hidden at scroll = 0; reveals only once the Spark aperture opens onto Nano Banana T-Shirt -->
+          <div class="act-hero__bar is-hidden-at-rest" id="hero-piece-bar"></div>
+        </div>
+      </section>
+
+      <!-- CHAPTER GATE I: 1-Frame #1F34FF Cobalt Cut + Expanding [ Apparel ] Curtain -->
+      <div class="chapter-gate chapter-gate--to-cobalt" id="gate-apparel" aria-label="Apparel chapter">
+        <div class="chapter-gate__fill" id="gate-apparel-fill"></div>
+        <div class="chapter-gate__lockup" id="gate-apparel-lockup">
+          <span class="chapter-gate__bracket chapter-gate__bracket--left">[</span>
+          <h2 class="chapter-gate__word">Apparel</h2>
+          <span class="chapter-gate__bracket chapter-gate__bracket--right">]</span>
+        </div>
+      </div>
+
+      <!-- 2. NANO BANANA SWEATSHIRT (01): #1F34FF Cobalt 62/38 Architectural Shutter Monolith -->
+      <section
+        class="piece-section piece-sweatshirt"
+        id="piece-sweatshirt"
+        aria-label="Nano Banana Sweatshirt"
+      >
+        <div class="piece-sweatshirt__pin" id="sweatshirt-pin">
+          <div class="piece-sweatshirt__grid">
+            <div
+              class="piece-sweatshirt__anchor"
+              id="sweatshirt-anchor"
+              role="button"
+              tabindex="0"
+              aria-label="Inspect Nano Banana Sweatshirt"
+            >
+              <span class="corner-tick corner-tick--tl" aria-hidden="true"></span>
+              <span class="corner-tick corner-tick--tr" aria-hidden="true"></span>
+              <span class="corner-tick corner-tick--bl" aria-hidden="true"></span>
+              <span class="corner-tick corner-tick--br" aria-hidden="true"></span>
+              <div class="piece-sweatshirt__anchor-clip">
+                <img
+                  class="piece-sweatshirt__anchor-img"
+                  id="sweatshirt-anchor-img"
+                  src="./assets/photos/web/01_a_sweatshirt_wide.webp"
+                  alt="Nano Banana Sweatshirt against concrete architecture"
+                  decoding="async"
+                />
+              </div>
+            </div>
+
+            <div class="piece-sweatshirt__right">
+              <div
+                class="piece-sweatshirt__shutter"
+                id="sweatshirt-shutter"
+                role="button"
+                tabindex="0"
+                aria-label="Inspect Nano Banana Sweatshirt embroidery details"
+              >
+                <div class="piece-sweatshirt__layers" id="sweatshirt-layers"></div>
+                <div class="piece-step-dots" id="sweatshirt-dots" aria-hidden="true"></div>
+              </div>
+
+              <div class="piece-sweatshirt__bar" id="sweatshirt-bar"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. GEMINI BLACK T-SHIRT (06): #08080A 4-Blade Kinetic Architectural Accordion -->
+      <section
+        class="piece-section piece-black-tee"
+        id="piece-black-tee"
+        aria-label="Gemini Black T-Shirt"
+      >
+        <div class="piece-black-tee__pin" id="black-tee-pin">
+          <div class="piece-black-tee__cone" id="black-tee-cone" aria-hidden="true"></div>
+          <canvas class="piece-black-tee__motes" id="black-tee-motes" aria-hidden="true"></canvas>
+
+          <div class="piece-black-tee__stage-wrap">
+            <div class="piece-black-tee__accordion" id="black-tee-accordion"></div>
+
+            <div class="piece-black-tee__footer">
+              <div class="piece-step-dots" id="black-tee-dots" aria-hidden="true"></div>
+              <div class="piece-black-tee__bar" id="black-tee-bar"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. NANO BANANA SPORTS SOCKS (04): #131418 Slate 28-Deg Diagonal Stepped Triptych -->
+      <section
+        class="piece-section piece-socks"
+        id="piece-socks"
+        aria-label="Nano Banana Sports Socks"
+      >
+        <div class="piece-socks__inner">
+          <div class="piece-socks__triptych" id="socks-triptych"></div>
+          <div class="piece-socks__bar" id="socks-bar"></div>
+        </div>
+      </section>
+
+      <!-- CHAPTER GATE II: 1-Frame #1F34FF Cobalt -> #08080A Expanding [ Objects ] Curtain -->
+      <div class="chapter-gate chapter-gate--to-obsidian" id="gate-objects" aria-label="Objects chapter">
+        <div class="chapter-gate__fill" id="gate-objects-fill"></div>
+        <div class="chapter-gate__lockup" id="gate-objects-lockup">
+          <span class="chapter-gate__bracket chapter-gate__bracket--left">[</span>
+          <h2 class="chapter-gate__word">Objects</h2>
+          <span class="chapter-gate__bracket chapter-gate__bracket--right">]</span>
+        </div>
+      </div>
+
+      <!-- 5. NANO BANANA TOTE BAG (03): #08080A 180-Deg 3D Dual-Sided Canvas Flip -->
+      <section
+        class="piece-section piece-tote"
+        id="piece-tote"
+        aria-label="Nano Banana Tote Bag"
+      >
+        <div class="piece-tote__pin" id="tote-pin">
+          <div class="piece-tote__composition">
+            <div
+              class="piece-tote__flank piece-tote__flank--left"
+              id="tote-flank-left"
+              role="button"
+              tabindex="0"
+              aria-label="Inspect Nano Banana Tote Bag overhead view"
+            >
+              <img
+                src="./assets/photos/web/03_a_tote_overhead_walk.webp"
+                alt="Nano Banana Tote Bag street carry"
+                decoding="async"
+              />
+            </div>
+
+            <div class="piece-tote__center">
+              <div
+                class="piece-tote__scene"
+                id="tote-flip-scene"
+                role="button"
+                tabindex="0"
+                aria-label="Inspect dual-sided Nano Banana Tote Bag"
+              >
+                <div class="piece-tote__card3d" id="tote-card-3d">
+                  <div class="piece-tote__face piece-tote__face--front">
+                    <img
+                      src="./assets/photos/web/03_b_tote_side_a_carry.webp"
+                      alt="Nano Banana Tote Bag with Gemini wordmark"
+                      decoding="async"
+                    />
+                  </div>
+                  <div class="piece-tote__face piece-tote__face--back">
+                    <img
+                      src="./assets/photos/web/03_c_tote_side_b_closeup.webp"
+                      alt="Nano Banana Tote Bag reverse side with peeled banana"
+                      decoding="async"
+                    />
+                  </div>
+                  <div class="piece-tote__edge-glint" id="tote-edge-glint" aria-hidden="true"></div>
+                </div>
+              </div>
+
+              <div class="piece-tote__bar" id="tote-bar"></div>
+            </div>
+
+            <div
+              class="piece-tote__flank piece-tote__flank--right"
+              id="tote-flank-right"
+              role="button"
+              tabindex="0"
+              aria-label="Inspect Nano Banana Tote Bag curb detail"
+            >
+              <img
+                src="./assets/photos/web/03_d_tote_curb_still.webp"
+                alt="Nano Banana Tote Bag resting on granite curb"
+                decoding="async"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. GEMINI INSULATED BOTTLE (07): #08080A High-Velocity Camera-Pan Arrest -->
+      <section
+        class="piece-section piece-bottle"
+        id="piece-bottle"
+        aria-label="Gemini Insulated Bottle"
+      >
+        <div class="piece-bottle__pin" id="bottle-pin">
+          <div class="piece-bottle__streaks" id="bottle-streaks" aria-hidden="true"></div>
+
+          <div class="piece-bottle__stage-wrap">
+            <div
+              class="piece-bottle__viewport"
+              id="bottle-viewport"
+              role="button"
+              tabindex="0"
+              aria-label="Inspect Gemini Insulated Bottle"
+            >
+              <div class="piece-bottle__frames" id="bottle-frames"></div>
+            </div>
+
+            <div class="piece-bottle__footer">
+              <div class="piece-step-dots" id="bottle-dots" aria-hidden="true"></div>
+              <div class="piece-bottle__bar" id="bottle-bar"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. NANO BANANA PIN BADGE (05): #1F34FF Cobalt Continuous Focal-Point Macro Zoom -->
+      <section
+        class="piece-section piece-pin"
+        id="piece-pin"
+        aria-label="Nano Banana Pin Badge"
+      >
+        <div class="piece-pin__pin" id="pin-pin">
+          <div class="piece-pin__stage-wrap">
+            <div
+              class="piece-pin__viewport"
+              id="pin-viewport"
+              role="button"
+              tabindex="0"
+              aria-label="Inspect Nano Banana Pin Badge"
+            >
+              <span class="corner-tick corner-tick--tl" aria-hidden="true"></span>
+              <span class="corner-tick corner-tick--tr" aria-hidden="true"></span>
+              <span class="corner-tick corner-tick--bl" aria-hidden="true"></span>
+              <span class="corner-tick corner-tick--br" aria-hidden="true"></span>
+              <div class="piece-pin__clip">
+                <div class="piece-pin__layers" id="pin-layers"></div>
+                <div class="piece-pin__glint" id="pin-glint" aria-hidden="true"></div>
+              </div>
+            </div>
+
+            <div class="piece-pin__footer">
+              <div class="piece-step-dots" id="pin-dots" aria-hidden="true"></div>
+              <div class="piece-pin__bar" id="pin-bar"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. GEMINI HOLOGRAPHIC STICKER PACK (08): #08080A Horizontal 4-Surface Foil Deck -->
+      <section
+        class="piece-section piece-stickers"
+        id="piece-stickers"
+        aria-label="Gemini Holographic Sticker Pack"
+      >
+        <div class="piece-stickers__pin" id="stickers-pin">
+          <div class="piece-stickers__rail-mask">
+            <div class="piece-stickers__track" id="stickers-track"></div>
+          </div>
+          <div class="piece-stickers__bar-wrap">
+            <div class="piece-stickers__bar" id="stickers-bar"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- COMPLETE SET: #131418 Slate (a) (b) (c) (d) Asymmetric Editorial Spread -->
+      <section class="act-spread" id="act-4" aria-label="Complete Set">
+        <div class="act-spread__inner">
+          <aside class="act-spread__manifest" id="spread-manifest">
+            <h2 class="act-spread__heading">Complete Set</h2>
+            <p class="act-spread__sub">
+              Four core pieces paired across heavyweight fleece, unbleached canvas, prism foil, and hard enamel.
+            </p>
+
+            <ul class="act-spread__list" id="spread-manifest-list"></ul>
+
+            <div class="act-spread__total-row">
+              <span class="act-spread__total-label">SET TOTAL</span>
+              <span class="act-spread__total-value" id="spread-total-odometer">GBP £110.00</span>
+            </div>
+
+            <button type="button" class="gs-btn-primary act-spread__cta" id="spread-add-set-btn">
+              <span class="gs-btn-label" id="spread-add-set-label">Add Set to Bag</span>
+            </button>
+          </aside>
+
+          <div class="act-spread__gallery" id="spread-gallery-mount"></div>
+        </div>
+      </section>
+
+      <!-- MONOCHROME GEMINI SPARK INTERLUDE (#08080A & #FFFFFF Op-Art Topo-Slice) -->
+      <section
+        class="act-mono-spark"
+        id="act-mono-spark"
+        aria-label="Monochrome Gemini Spark kinetic interlude"
+      >
+        <div class="act-mono-spark__pin" id="mono-spark-pin">
+          <canvas class="act-mono-spark__canvas" id="mono-spark-canvas" aria-hidden="true"></canvas>
+        </div>
+      </section>
+
+      <!-- ALL PIECES: #08080A 4:5 8-Piece Shop Grid -->
+      <section class="act-catalog" id="act-5" aria-label="All Pieces">
+        <div class="act-catalog__header">
+          <h2 class="act-catalog__heading">All Pieces</h2>
+        </div>
+
+        <div class="act-catalog__grid" id="catalog-grid-mount"></div>
+      </section>
+    </main>
+
+    <!-- Ultra-Clean Minimalist 1px Footer -->
+    <footer class="gs-footer" id="gs-footer">
+      <div class="gs-footer__left">
+        <span class="gs-footer__brand">Google Gemini</span>
+      </div>
+      <div class="gs-footer__right">
+        <a
+          href="https://your.merch.google/brands/gemini.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="gs-footer__link"
+          id="footer-official-store-link"
+        >
+          Official Google Merch Store ↗
+        </a>
+        <button type="button" class="gs-footer__top-btn" id="footer-top-btn">
+          Top ↑
+        </button>
+      </div>
+    </footer>
+
+    <!-- Full-Viewport Product Stage Mount (z-index: 50) -->
+    <div id="product-stage-root"></div>
+
+    <!-- Slide-Over Bag Drawer Mount (z-index: 54-55) -->
+    <div id="bag-drawer-root"></div>
+
+    <!-- Fixed Pointer-Events-None Subtle Film-Grain Overlay (z-index: 60) -->
+    <div class="gs-film-grain" id="gs-film-grain" aria-hidden="true"></div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+# OBD Home Systems platform — one-command stack (docs/DEPLOYMENT-ARCHITECTURE.md)
+#
+#   OBD_JWT_SECRET must come from the host environment — never commit it.
+#   On this VM it lives in .deploy/jwt-secret.txt (chmod 600, gitignored):
+#       export OBD_JWT_SECRET="$(cat .deploy/jwt-secret.txt)"
+#       docker compose up -d --build        # or: podman compose up -d --build
+#
+# Ports: the edge is published on host 8080 (rootless runtimes can bind it
+# unprivileged); the platform service itself is never published directly.
+
+services:
+  platform:
+    build: .
+    image: obd-home-systems-platform:latest
+    environment:
+      OBD_JWT_SECRET: "${OBD_JWT_SECRET:?set OBD_JWT_SECRET in the host environment — never commit it}"
+      OBD_DATA_DIR: /data
+    volumes:
+      - obd-data:/data
+    restart: unless-stopped
+
+  edge:
+    image: caddy:2-alpine
+    depends_on:
+      - platform
+    ports:
+      - "8080:80"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+    restart: unless-stopped
+
+volumes:
+  obd-data:

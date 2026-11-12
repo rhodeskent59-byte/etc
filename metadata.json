@@ -1,0 +1,8 @@
+{
+  "name": "Remix Gemini Supply",
+  "description": "HOUSE-OBD Building On-Board Diagnostics & Autonomous Facility Engine with SQLite WAL telemetry, multi-agent Gemini diagnostic council, and carbon-fiber tactical HUD.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
